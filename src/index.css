@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap');
+@import 'tailwindcss';
+@plugin "flowbite/plugin";
+@source "../node_modules/flowbite";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* Colors */
+  --color-bright-blue: hsl(220, 98%, 61%);
+  --color-check-bg-start: hsl(192, 100%, 67%);
+  --color-check-bg-end: hsl(280, 87%, 65%);
+
+  /* Theme light */
+  --color-very-light-gray: hsl(0, 0%, 98%);
+  --color-very-light-grayish-blue: hsl(236, 33%, 92%);
+  --color-light-grayish-blue: hsl(233, 11%, 84%);
+  --color-dark-grayish-blue: hsl(236, 9%, 61%);
+  --color-very-dark-grayish-blue: hsl(235, 19%, 35%);
+
+  /* Theme dark */
+  --color-very-dark-blue: hsl(235, 21%, 11%);
+  --color-very-dark-desaturated-blue: hsl(235, 24%, 19%);
+  --color-light-grayish-blue-dark: hsl(234, 39%, 85%);
+  --color-light-grayish-blue-hover: hsl(236, 33%, 92%);
+  --color-dark-grayish-blue-dark: hsl(234, 11%, 52%);
+  --color-very-dark-grayish-blue-dark: hsl(233, 14%, 35%);
+  --color-very-dark-grayish-blue-dark-2: hsl(237, 14%, 26%);
+
+  /* Typography */
+  --font-body: 'Josefin Sans', sans-serif;
+  --font-size-body: 18px;
+
+  /* Screen sizes */
+  --screen-mobile: 375px;
+  --screen-desktop: 1440px;
+}
+
+* {
+  font-family: var(--font-body);
+}
+
+input:focus {
+  outline: none;
+  box-shadow: none;
+}
