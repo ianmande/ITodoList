@@ -1,8 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { CreateTask } from '../CreateTask';
-import { createTask } from '../../../api/requests';
-import { useTask } from '../../../hooks/useTask';
 
 vi.mock('../../../hooks/useTask', async () => {
   const actual = await vi.importActual('../../../hooks/useTask');
@@ -22,8 +20,8 @@ vi.mock('../../api/requests', () => ({
 describe('CreateTask Component', () => {
   it('should render input and checkbox', () => {
     render(<CreateTask />);
-    expect(screen.getByPlaceholderText('Add a new task')).toBeInTheDocument();
-    expect(screen.getByRole('checkbox')).toBeInTheDocument();
+    expect(screen.getByPlaceholderText('Add a new task')).toBeDefined();
+    expect(screen.getByRole('checkbox')).toBeDefined();
   });
 
   it('should update input value when typing', () => {
@@ -31,6 +29,6 @@ describe('CreateTask Component', () => {
     const input = screen.getByPlaceholderText('Add a new task');
 
     fireEvent.change(input, { target: { value: 'New Task' } });
-    expect(input).toHaveValue('New Task');
+    expect(input).toHaveProperty('value', 'New Task');
   });
 });

@@ -1,43 +1,58 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import Header from '../Header';
+
 import { useDarkMode } from '../../../hooks/useDarkMode';
 
 vi.mock('../../../hooks/useDarkMode', () => ({
   useDarkMode: vi.fn(() => ({
     isDarkMode: false,
+    toggleDarkMode: vi.fn(),
   })),
 }));
 
 describe('Header Component', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
   it('should render the correct background image for desktop light mode', () => {
-    (useDarkMode as vi.Mock).mockReturnValue({ isDarkMode: false });
+    vi.mocked(useDarkMode).mockReturnValue({
+      isDarkMode: false,
+      toggleDarkMode: vi.fn(),
+    });
 
     render(<Header />);
 
+    // Verificamos con `toHaveProperty`
     const img = screen.getByAltText('Background');
-    expect(img).toHaveAttribute(
+    expect(img).toHaveProperty(
       'src',
-      '/src/assets/images/bg-desktop-light.jpg'
+      expect.stringContaining('bg-desktop-light.jpg')
     );
   });
 
   it('should render the correct background image for desktop dark mode', () => {
-    (useDarkMode as vi.Mock).mockReturnValue({ isDarkMode: true });
+    vi.mocked(useDarkMode).mockReturnValue({
+      isDarkMode: true,
+      toggleDarkMode: vi.fn(),
+    });
 
     render(<Header />);
 
     const img = screen.getByAltText('Background');
-    expect(img).toHaveAttribute(
+    expect(img).toHaveProperty(
       'src',
-      '/src/assets/images/bg-desktop-dark.jpg'
+      expect.stringContaining('bg-desktop-dark.jpg')
     );
   });
 
-  it('should use the correct mobile background image when screen width is 375px', () => {
-    (useDarkMode as vi.Mock).mockReturnValue({ isDarkMode: true });
+  it('should render the mobile background image when screen width is 375px', () => {
+    vi.mocked(useDarkMode).mockReturnValue({
+      isDarkMode: true,
+      toggleDarkMode: vi.fn(),
+    });
 
-    // Simular media query manualmente
     window.matchMedia = vi.fn().mockImplementation((query) => ({
       matches: query === '(max-width: 375px)',
       media: query,
@@ -49,10 +64,10 @@ describe('Header Component', () => {
 
     const source = screen
       .getByRole('img')
-      .parentElement?.querySelector('source');
-    expect(source).toHaveAttribute(
+      ?.parentElement?.querySelector('source');
+    expect(source).toHaveProperty(
       'srcset',
-      '/src/assets/images/bg-mobile-dark.jpg'
+      expect.stringContaining('bg-mobile-dark.jpg')
     );
   });
 });

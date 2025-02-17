@@ -4,12 +4,15 @@ import TitleAndSwitchMode from './TitleAndSwitchMode';
 import { useDarkMode } from '../../hooks/useDarkMode';
 
 vi.mock('../../hooks/useDarkMode', () => ({
-  useDarkMode: vi.fn(),
+  useDarkMode: vi.fn(() => ({
+    isDarkMode: false,
+    toggleDarkMode: vi.fn(),
+  })),
 }));
 
 describe.only.only('TitleAndSwitchMode Component', () => {
   it('should render the title and theme switch icon', () => {
-    (useDarkMode as vi.Mock).mockReturnValue({
+    vi.mocked(useDarkMode).mockReturnValue({
       isDarkMode: false,
       toggleDarkMode: vi.fn(),
     });
@@ -22,7 +25,7 @@ describe.only.only('TitleAndSwitchMode Component', () => {
 
   it('should switch theme when clicking the icon', () => {
     const toggleDarkModeMock = vi.fn();
-    (useDarkMode as vi.Mock).mockReturnValue({
+    vi.mocked(useDarkMode).mockReturnValue({
       isDarkMode: false,
       toggleDarkMode: toggleDarkModeMock,
     });

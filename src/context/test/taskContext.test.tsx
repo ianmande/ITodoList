@@ -1,8 +1,7 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { DarkModeContext, DarkModeProvider } from '../darkMode';
 
-// ✅ Mock `localStorage`
 beforeEach(() => {
   localStorage.clear();
   document.documentElement.classList.remove('dark');
@@ -20,6 +19,6 @@ describe('DarkModeProvider Context', () => {
       </DarkModeProvider>
     );
 
-    expect(screen.getByText('Dark')).toBeInTheDocument();
+    expect(screen.getByText('Dark')).toBeDefined();
   });
 });

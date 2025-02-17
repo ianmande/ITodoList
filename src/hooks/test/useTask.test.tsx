@@ -7,8 +7,20 @@ const mockSetTasks = vi.fn();
 
 const mockTaskContext = {
   tasks: [
-    { id: '1', description: 'Task 1', completed: false },
-    { id: '2', description: 'Task 2', completed: true },
+    {
+      id: '1',
+      title: 'Dummy Title 1',
+      description: 'Task 1',
+      priority: 3,
+      completed: false,
+    },
+    {
+      id: '2',
+      title: 'Dummy Title 2',
+      description: 'Task 2',
+      priority: 2,
+      completed: true,
+    },
   ],
   setTasks: mockSetTasks,
 };
