@@ -24,7 +24,6 @@ describe('Header Component', () => {
 
     render(<Header />);
 
-    // Verificamos con `toHaveProperty`
     const img = screen.getByAltText('Background');
     expect(img).toHaveProperty(
       'src',

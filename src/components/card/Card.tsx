@@ -17,7 +17,7 @@ import { toast } from 'react-toastify';
 
 export const Card = () => {
   const { setTasks, filteredTasks, setFilter, filter } = useTask();
-  const [loading, setLoading] = useState(true); // Estado de carga
+  const [loading, setLoading] = useState(true);
 
   const fetchTasks = async () => {
     try {
@@ -26,7 +26,7 @@ export const Card = () => {
       setTasks(response.data);
     } catch (error) {
       console.error('Error fetching tasks:', error);
-      toast.error('Failed to fetch tasks'); // 🔥 Mostrar error
+      toast.error('Failed to fetch tasks');
     } finally {
       setLoading(false);
     }
@@ -38,7 +38,7 @@ export const Card = () => {
       setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
     } catch (error) {
       console.error('Error deleting task:', error);
-      toast.error('Failed to delete task'); // 🔥 Notificación de error
+      toast.error('Failed to delete task');
     }
   };
 
