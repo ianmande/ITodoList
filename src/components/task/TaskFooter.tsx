@@ -16,8 +16,8 @@ export const TaskFooter = ({
   clearCompleted,
 }: Props) => {
   return (
-    <div className="w-full bg-white dark:bg-very-dark-desaturated-blue rounded-sm shadow-lg py-4 px-6 flex justify-between text-sm text-dark-grayish-blue dark:text-light-grayish-blue">
-      <span>{taskNumbers} items left</span>
+    <div className="w-full bg-white dark:bg-very-dark-desaturated-blue rounded-sm shadow-lg py-4 px-6 grid gap justify-center md:flex md:justify-between text-sm text-dark-grayish-blue dark:text-light-grayish-blue">
+      <span className="text-center md:text-left">{taskNumbers} items left</span>
 
       <div className="flex gap-4">
         <button
